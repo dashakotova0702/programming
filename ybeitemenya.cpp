@@ -1,5 +1,5 @@
 #include <iostream>
 int main(int argc, char const *argv[]) {
-  std::cout << "труляля" << '\n';
+  std::cout << "хеллоу ворлд" << '\n';
   return 0;
 }
