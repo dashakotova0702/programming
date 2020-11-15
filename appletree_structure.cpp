@@ -16,7 +16,7 @@ void init (AppleTree* appletree,
            int age = 0,
            int branches = 0,
            double height = 0.5,
-           char* variety = "")
+           char* variety = "Antonovka")
 {
         appletree->age = age;
         appletree->branches = branches;
@@ -48,9 +48,10 @@ int main()
 {
         AppleTree Antonovka, Granny;
 
-        init(&Antonovka, 0, 20, 1.0, "Antonovka");
+        init(&Antonovka);
         view(&Antonovka);
         care(&Antonovka);
+        view(&Antonovka);
 
         init(&Granny, 1, 100, 5.5, "Granny");
         view(&Granny);
@@ -63,8 +64,13 @@ int main()
 /*
    The variety of the apple tree is Antonovka
    The age of the apple tree = 0 (year)
-   The height of the apple tree = 1.000000 (meter)
-   The number of branches of the apple tree = 20 (meter)
+   The height of the apple tree = 0.500000 (meter)
+   The number of branches of the apple tree = 0 (meter)
+
+   The variety of the apple tree is Antonovka
+   The age of the apple tree = 0 (year)
+   The height of the apple tree = 0.500000 (meter)
+   The number of branches of the apple tree = 0 (meter)
 
    The variety of the apple tree is Granny
    The age of the apple tree = 1 (year)

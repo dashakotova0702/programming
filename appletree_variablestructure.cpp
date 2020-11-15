@@ -25,7 +25,7 @@ void init (AppleTree* appletree,
            int age = 0,
            int branches = 0,
            double height = 0.5,
-           char* variety = "",
+           char* variety = "Antonovka",
            int mark = 0)
 {
         appletree->age = age;
@@ -105,12 +105,9 @@ int main()
 {
         AppleTree Antonovka, Granny;
 
-        init(&Antonovka, 0, 20, 1.0, "Antonovka", 0);
-        view(&Antonovka);
-        init(&Antonovka, 0, 20, 1.0, "Antonovka", 2);
+        init(&Antonovka);
         view(&Antonovka);
         care(&Antonovka);
-        init(&Antonovka, 1, 100, 3.0, "Antonovka", 1);
         view(&Antonovka);
 
         init(&Granny, 0, 5, 0.5, "Granny", 0);
@@ -125,42 +122,36 @@ int main()
 }
 
 /*
-   The variety of the apple tree is Antonovka
-   The age of the apple tree = 0 (year)
-   The height of the apple tree = 1.000000 (meter)
-   The number of branches of the apple tree = 20 (meter)
-   The apple tree is watering
+    The variety of the apple tree is Antonovka
+    The age of the apple tree = 0 (year)
+    The height of the apple tree = 0.500000 (meter)
+    The number of branches of the apple tree = 0 (meter)
+    The apple tree is watering
 
-   The variety of the apple tree is Antonovka
-   The age of the apple tree = 0 (year)
-   The height of the apple tree = 1.000000 (meter)
-   The number of branches of the apple tree = 20 (meter)
-   The apple tree is fertilizer
+    The variety of the apple tree is Antonovka
+    The age of the apple tree = 0 (year)
+    The height of the apple tree = 0.500000 (meter)
+    The number of branches of the apple tree = 0 (meter)
+    The apple tree is watering
 
-   The variety of the apple tree is Antonovka
-   The age of the apple tree = 1 (year)
-   The height of the apple tree = 3.000000 (meter)
-   The number of branches of the apple tree = 100 (meter)
-   The number of trim branches of the apple tree = 0 (item)
+    The variety of the apple tree is Granny
+    The age of the apple tree = 0 (year)
+    The height of the apple tree = 0.500000 (meter)
+    The number of branches of the apple tree = 5 (meter)
+    The apple tree is watering
 
-   The variety of the apple tree is Granny
-   The age of the apple tree = 0 (year)
-   The height of the apple tree = 0.500000 (meter)
-   The number of branches of the apple tree = 5 (meter)
-   The apple tree is watering
+    The variety of the apple tree is Granny
+    The age of the apple tree = 0 (year)
+    The height of the apple tree = 0.500000 (meter)
+    The number of branches of the apple tree = 5 (meter)
+    The apple tree is fertilizer
 
-   The variety of the apple tree is Granny
-   The age of the apple tree = 0 (year)
-   The height of the apple tree = 0.500000 (meter)
-   The number of branches of the apple tree = 5 (meter)
-   The apple tree is fertilizer
-
-   The variety of the apple tree is Granny
-   The age of the apple tree = 1 (year)
-   The height of the apple tree = 1.000000 (meter)
-   The number of branches of the apple tree = 50 (meter)
-   The number of trim branches of the apple tree = 0 (item)
+    The variety of the apple tree is Granny
+    The age of the apple tree = 1 (year)
+    The height of the apple tree = 1.000000 (meter)
+    The number of branches of the apple tree = 50 (meter)
+    The number of trim branches of the apple tree = 0 (item)
 
 
-   Для продолжения нажмите любую клавишу . . .
+    Для продолжения нажмите любую клавишу . . .
  */
