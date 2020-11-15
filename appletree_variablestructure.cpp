@@ -108,6 +108,7 @@ int main()
         init(&Antonovka);
         view(&Antonovka);
         care(&Antonovka);
+        view(&Antonovka);
 
         init(&Granny, 0, 5, 0.5, "Granny", 0);
         view(&Granny);
