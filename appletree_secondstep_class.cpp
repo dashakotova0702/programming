@@ -4,9 +4,8 @@ using namespace std;
 
 class AppleTree
 {
-int* pointer;   //pointer on the first array element
-//pointer[0] - age of tree (year)
-//pointer[1] - number pf branches (item)
+int* age;   //age of tree (year)
+int* branches; //number of branches (item)
 double height;   //height of tree (meter)
 string variety;   //tree variety
 
@@ -19,9 +18,8 @@ AppleTree (int age = 0,
         height(height),
         variety(variety)
 {
-        pointer = new int[2];
-        pointer[0] = age;
-        pointer[1] = branches;
+        this->age = new int(age);
+        this->branches = new int(branches);
 }
 
 //copy constructor
@@ -29,15 +27,15 @@ AppleTree(const AppleTree& appletree) :
         height(appletree.height),
         variety(appletree.variety)
 {
-        pointer = new int[2];
-        pointer[0] = appletree.pointer[0];
-        pointer[1] = appletree.pointer[1];
+        age = new int(*(appletree.age));
+        branches = new int(*(appletree.branches));
 }
 
 //destructor
 ~AppleTree()
 {
-        delete[] pointer;
+        delete age;
+        delete branches;
 }
 
 //usefull function
@@ -49,16 +47,16 @@ friend ostream& operator<< (ostream&, AppleTree);
 
 void AppleTree::care (AppleTree& appletree)
 {
-        if (appletree.pointer[1] >= 100)
-                appletree.pointer[1] = 70;
+        if (*(appletree.branches) >= 100)
+                *(appletree.branches) = 70;
 }
 
 ostream& operator<< (ostream& stream, AppleTree appletree)
 {
         stream << "The variety of the apple tree is " << appletree.variety << endl;
-        stream << "The age of the apple tree = " << appletree.pointer[0] << " (year)" << endl;
+        stream << "The age of the apple tree = " << *(appletree.age) << " (year)" << endl;
         stream << "The height of the apple tree = " << appletree.height << " (meter)" << endl;
-        stream << "The number of branches of the apple tree = " << appletree.pointer[1] << " (meter)" << endl << endl;
+        stream << "The number of branches of the apple tree = " << *(appletree.branches) << " (meter)" << endl << endl;
         return stream;
 }
 
@@ -70,7 +68,7 @@ int main ()
         Antonovka.care(Antonovka);
         cout << Antonovka;
 
-        AppleTree Granny (1, 100, 5.5, "Granny");
+        AppleTree Granny(1, 100, 5.5, "Granny");
         cout << Granny;
         Granny.care(Granny);
         cout << Granny;
