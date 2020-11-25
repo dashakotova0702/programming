@@ -1,5 +1,6 @@
 /* Apple Tree */
 #include <iostream>
+#include <string>
 using namespace std;
 
 class DeciduousTree
@@ -12,6 +13,28 @@ int mark;   //mark of month
 //default constructor
 DeciduousTree (string month = "april") : month(month)
 {
+        mark = 0;
+        leaves = false;
+}
+
+//copy constructor
+DeciduousTree (const DeciduousTree& deciduoustree) :
+        leaves(deciduoustree.leaves),
+        month(deciduoustree.month),
+        mark(deciduoustree.mark)
+{
+}
+
+//destructor
+virtual ~DeciduousTree ()
+{
+}
+
+//function of month check
+virtual void MonthCheck ();
+};
+
+void DeciduousTree::MonthCheck () {
         if (month == "january" || month == "february" || month == "march" || month == "april" || month == "october" || month == "november" || month == "december")
                 mark = 0;
         if (month == "may" || month == "june" || month == "july" || month == "august" || month == "september")
@@ -31,20 +54,6 @@ DeciduousTree (string month = "april") : month(month)
         default: leaves = false;
         }
 }
-
-//copy constructor
-DeciduousTree (const DeciduousTree& deciduoustree) :
-        leaves(deciduoustree.leaves),
-        month(deciduoustree.month),
-        mark(deciduoustree.mark)
-{
-}
-
-//destructor
-virtual ~DeciduousTree ()
-{
-}
-};
 
 class AppleTree : public DeciduousTree
 {
@@ -88,6 +97,11 @@ AppleTree(const AppleTree& appletree) :
 //usefull function
 void care (AppleTree& appletree);
 
+//function of month check
+void Month_check () {
+        MonthCheck();
+}
+
 //friend operator function
 friend ostream& operator<< (ostream&, AppleTree);
 };
@@ -116,11 +130,14 @@ int main ()
 {
         AppleTree Antonovka;
 
+        Antonovka.Month_check();
         cout << Antonovka;
         Antonovka.care(Antonovka);
         cout << Antonovka;
 
         AppleTree Granny (1, 100, 5.5, "Granny", "may");
+
+        Granny.Month_check();
         cout << Granny;
         Granny.care(Granny);
         cout << Granny;
