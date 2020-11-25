@@ -1,5 +1,6 @@
 /* Apple Tree */
 #include <iostream>
+#include <string>
 using namespace std;
 
 class AppleTree
