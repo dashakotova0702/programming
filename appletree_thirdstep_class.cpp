@@ -14,7 +14,7 @@ ifstream stream;   //input file stream
 
 public:
 // default constructor
-AppleTree (const char* file = "Antonovka.txt")
+AppleTree (const string file = "Antonovka.txt")
 {
         stream.open (file);
         if (stream.is_open())
