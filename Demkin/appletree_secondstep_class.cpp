@@ -25,6 +25,10 @@ AppleTree (int age = 0,
         count_of_variety(count_of_variety)
 {
         variety = new string[count_of_variety];
+        if (variety == nullptr)
+        {
+                throw "Memory is not allocated.";
+        }
         switch (count_of_variety)
         {
         case 1:
@@ -50,6 +54,10 @@ AppleTree(const AppleTree& appletree) :
         count_of_variety(appletree.count_of_variety)
 {
         variety = new string[appletree.count_of_variety];
+        if (variety == nullptr)
+        {
+                throw "Memory is not allocated.";
+        }
         switch (appletree.count_of_variety)
         {
         case 1:
@@ -66,6 +74,7 @@ AppleTree(const AppleTree& appletree) :
 
         }
 }
+
 
 //destructor
 ~AppleTree()

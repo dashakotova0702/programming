@@ -31,7 +31,7 @@ virtual ~DeciduousTree ()
 }
 
 //function of month check
-virtual void MonthCheck ();
+void MonthCheck ();
 };
 
 void DeciduousTree::MonthCheck () {
