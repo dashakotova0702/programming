@@ -1,11 +1,13 @@
 #include <iostream>
+#include <string>
+#include <fstream>
 #include <list>
 #include <regex>
 using namespace std;
 
 class Grammar {
 public:
-string programm = "{name; float: for) notation}";
+string programm;
 string reserved[15] = {"int", "float", "bool", "ass", "if", "then", "else", "for", "to", "do", "while", "read", "write", "true", "false"};
 string separators[20] = {"\s", "{", "}", ";", "(", ")", ":", "/", "\n", "[", "]", "<", ">", "=", "+", "-", "*", "or", "and", "not"};
 list <string> names;
@@ -14,6 +16,11 @@ list <int> id_element;
 };
 
 void scanner (Grammar* g) {
+        ifstream file("code.txt");
+        string code;
+        while (getline(file, code))
+                g->programm += code;
+        file.close();
         cout << g->programm << endl;
         string str;
         smatch m;
@@ -77,12 +84,7 @@ void scanner (Grammar* g) {
 }
 
 int main (int argc, char const *argv[]) {
-        if (argc == 1)  {
-                Grammar g;
-                scanner(&g);
-                return 0;
-        }
-        else {
-                return -1;
-        }
+        Grammar g;
+        scanner(&g);
+        return 0;
 }
