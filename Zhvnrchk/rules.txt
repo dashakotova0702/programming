@@ -1,0 +1,83 @@
+P->{D1}
+D1->D
+D1->D1; D
+D1->S
+D1->S1; S
+D->int I1
+D->float I1
+D->bool I1
+I1->I
+I1->I1, I
+S1->S
+S1->S1; S
+S->S(: )S
+S->S(/n)S
+S->I1 ass E
+S->if E then S [else S]
+S->for I1 ass E to E do S
+S->while E do S
+S->read (I1)
+S->write (E)
+E->E1
+E->E1 <> E1
+E->E1 = E1
+E->E1 < E1
+E->E1 <= E1
+E->E1 > E1
+E->E1 >= E1
+E1->T
+E1->T + E1
+E1->T - E1
+E1->T or E1
+T->F
+T->F * T
+T->F/T
+T->F and T
+F->I
+F->N
+F->L
+F->not F
+F->(E)
+L->true
+L->false
+I->C
+I->IC
+I->IR
+N->R
+N->NR
+C->a
+C->b
+C->c
+C->d
+C->e
+C->f
+C->g
+C->h
+C->i
+C->j
+C->k
+C->l
+C->m
+C->n
+C->o
+C->p
+C->q
+C->r
+C->s
+C->t
+C->u
+C->v
+C->w
+C->x
+C->y
+C->z
+R->0
+R->1
+R->2
+R->3
+R->4
+R->5
+R->6
+R->7
+R->8
+R->9
