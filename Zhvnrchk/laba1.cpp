@@ -39,6 +39,7 @@ void scanner (Grammar* g) {
                 if (i != 19)
                         sprtrs += "|";
         }
+        cout << sprtrs << endl;
         const regex sep(sprtrs);
         while (regex_search(g->programm, m, sep)) {
                 int start = m.position();
