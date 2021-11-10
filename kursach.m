@@ -315,3 +315,50 @@ subplot(1, 2, 2);
 plot (x, y, 'red');
 xlabel('x[mm]')
 ylabel('y[mm]')
+figure;
+%------------Modeling----------------
+x_function_600dots = 0:0.5:300;
+len = length(x_function_600dots);
+delta = 0.5;
+delta_t = 0;
+y_func_2 = 0;
+for k = 1:n
+    t = 1;
+    for j = [1:k-1, k+1:n]
+        t = t .* (x_function_600dots-x_23dots(j))./(x_23dots(k)-x_23dots(j));
+    end
+    y_func_2 = y_func_2 + y_23dots(k) .* t;
+end
+V0 = 0;
+C = 9.81*y_func_2(1) + (V0^2)/2;
+tangens_a = 0;
+for i = 1:len
+    if (i == 1)
+        tangens_a(i) = y_func_2(i)/x_function_600dots(i);
+        V(i) = V0;
+        delta_t(i) = 0;
+    else
+        tangens_a(i) = (y_func_2(i)-y_func_2(i-1))/(x_function_600dots(i)-x_function_600dots(i-1));
+        V(i) = sqrt(abs((2*(C - (9.81*y_func_2(i))))/(1+(tangens_a(i)^2))));
+        if V(i) == 0
+            delta_t(i) = delta_t(i-1);
+        else
+            delta_t(i) = delta/V(i);
+        end
+    end
+end
+
+plot (x_function_600dots, V);
+figure;
+plot (x_function_600dots, delta_t);
+figure
+hold on;
+xlim([0 300]);
+ylim([0 200]);
+for k = 1:len
+    title('Modeling');
+    xlabel('x[mm]')
+    ylabel('y[mm]')
+    plot(x_function_600dots(k), y_func_2(k), '.r');
+    pause(delta_t(k)/2);  
+end
