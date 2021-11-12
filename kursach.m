@@ -15,14 +15,17 @@ for k = 1:n
     y_lagrange = y_lagrange + y_23dots(k) .* t;
 end
 hold on;
-plot(x, y_lagrange, 'blue');
-plot (x, y, 'red');
+fig1 = figure;
+plot(x, y_lagrange, 'blue', x, y, 'red');
 title('Lagrange');
 xlabel('x[mm]')
 ylabel('y[mm]')
-figure;
+set(gca,'FontSize', 14,'FontName', 'Times New Roman')
+print('D:\Поликек\курсач\Lagrange.jpg', '-r600', '-dtiff')
+close(fig1);
 %--------------Newton-------------
 y_newton = 1;
+delta_y = 0;
 for i = 1:length(y_23dots)
     delta_y (1, i) = y_23dots(i);
 end
@@ -43,12 +46,14 @@ for i=1:length(y_23dots)
     y_newton = y_newton + delta_y(i, i) * t;
 end
 hold on;
-plot (x, y_newton, 'blue');
-plot (x, y, 'red');
+fig2 = figure;
+plot (x, y_newton, 'blue', x, y, 'red');
 title('Newton');
 xlabel('x[mm]')
 ylabel('y[mm]')
-figure;
+set(gca,'FontSize', 14,'FontName', 'Times New Roman')
+print('D:\Поликек\курсач\Newton.jpg', '-r600', '-dtiff')
+close(fig2);
 %------------Spline------------
 y_10dots = [187, 169, 26, 34, 40, 53, 105, 113, 150, 176];
 x_10dots = [0, 28, 96, 176, 180, 210, 250, 262, 280, 300];
@@ -118,20 +123,14 @@ S_7 = y_10dots(7) + coeff_spl(7)*(x_10dots_7-x_10dots(7)) + coeff_spl(15)*((x_10
 S_8 = y_10dots(8) + coeff_spl(8)*(x_10dots_8-x_10dots(8)) + coeff_spl(16)*((x_10dots_8-x_10dots(8)).^2) + coeff_spl(25)*((x_10dots_8-x_10dots(8)).^3);
 S_9 = y_10dots(9) + coeff_spl(9)*(x_10dots_9-x_10dots(9)) + coeff_spl(17)*((x_10dots_9-x_10dots(9)).^2) + coeff_spl(26)*((x_10dots_9-x_10dots(9)).^3);
 hold on;
-plot(x_10dots_1, S_1, 'blue');
-plot(x_10dots_2, S_2, 'blue');
-plot(x_10dots_3, S_3, 'blue');
-plot(x_10dots_4, S_4, 'blue');
-plot(x_10dots_5, S_5, 'blue');
-plot(x_10dots_6, S_6, 'blue');
-plot(x_10dots_7, S_7, 'blue');
-plot(x_10dots_8, S_8, 'blue');
-plot(x_10dots_9, S_9, 'blue');
-plot (x, y, 'red');
+fig3 = figure;
+plot(x_10dots_1, S_1, 'blue', x_10dots_2, S_2, 'blue', x_10dots_3, S_3, 'blue', x_10dots_4, S_4, 'blue', x_10dots_5, S_5, 'blue', x_10dots_6, S_6, 'blue', x_10dots_7, S_7, 'blue', x_10dots_8, S_8, 'blue', x_10dots_9, S_9, 'blue', x, y, 'red');
 title('Spline');
 xlabel('x[mm]')
 ylabel('y[mm]')
-figure;
+set(gca,'FontSize', 14,'FontName', 'Times New Roman')
+print('D:\Поликек\курсач\Spline.jpg', '-r600', '-dtiff')
+close(fig3);
 %------------Approximation----------------
 N = length(x_10dots);
 m = 2;
@@ -172,12 +171,14 @@ sigma = sqrt(S2);
 x_appr = 0:0.5:300;
 y_appr = coeff_mnk(1, 3)*x_appr.^2 + coeff_mnk(1, 2)*x_appr + coeff_mnk(1, 1);
 hold on;
-plot (x_appr, y_appr, 'blue');
-plot (x, y, 'red');
+fig4 = figure;
+plot (x_appr, y_appr, 'blue', x, y, 'red');
 title('Approximation');
 xlabel('x[mm]')
 ylabel('y[mm]')
-figure;
+set(gca,'FontSize', 14,'FontName', 'Times New Roman')
+print('D:\Поликек\курсач\Approximation.jpg', '-r600', '-dtiff')
+close(fig4);
 %-----------Differentiation---------------
 subplot(1, 2, 1);
 hold on;
@@ -191,36 +192,27 @@ for k = 1:n
     end
     y_function = y_function + y_23dots(k) .* t;
 end
-
 d_y_1 = zeros (301);
 for i = 1:300
     d_y_1(i) = (y_function(i)-y_function(i+1));
 end
-plot(x_function, d_y_1, 'green');
-
 d_y_2 = zeros (301);
 for i = 2:301
     d_y_2(i) = (y_function(i-1)-y_function(i));
 end
-plot(x_function, d_y_2, 'magenta');
-
 Margin_of_error_back_and_forth = 1/2;
-
 d_y_3 = zeros (301);
 for i = 2:300
     d_y_3(i) = (y_function(i-1)-y_function(i+1))/2;
 end
-plot(x_function, d_y_3, 'blue');
-
 Margin_of_error_center_first_diff = 1/6;
-
 d_y_4 = zeros (301);
 for i = 2:300
     d_y_4(i) = (y_function(i-1)-2*y_function(i)+y_function(i+1))/2;
 end
-plot(x_function, d_y_4, 'black');
-
 Margin_of_error_center_second_diff = 1/12;
+fig5 = figure;
+plot (x_function, d_y_1, 'green', x_function, d_y_2, 'magenta', x_function, d_y_3, 'blue', x_function, d_y_4, 'black');
 disp('Margin of error of differentiation:');
 disp('Back and forth : '); 
 disp(Margin_of_error_back_and_forth);
@@ -228,7 +220,6 @@ disp('Center (first): ');
 disp(Margin_of_error_center_first_diff);
 disp('Center (second): ');
 disp(Margin_of_error_center_second_diff);
-
 title('Differentiation');
 xlabel('x[mm]')
 ylabel('y[mm]')
@@ -236,7 +227,9 @@ subplot(1, 2, 2);
 plot (x, (y), 'red');
 xlabel('x[mm]')
 ylabel('y[mm]')
-figure;
+set(gca,'FontSize', 14,'FontName', 'Times New Roman')
+print('D:\Поликек\курсач\Differentiation.jpg', '-r600', '-dtiff')
+close(fig5);
 %--------------Integration---------------
 subplot(1,2,1);
 hold on;
@@ -248,8 +241,6 @@ for i = 1:301
         i_y_1(i) = y_function(i) + i_y_1(i-1); 
     end
 end
-plot(x_function, i_y_1, 'green');
-
 i_y_2 = zeros (301);
 for i = 1:300
     if i == 1
@@ -258,10 +249,7 @@ for i = 1:300
         i_y_2(i) = y_function(i+1) + i_y_2(i-1); 
     end
 end
-plot(x_function, i_y_2, 'blue');
-
 Margin_of_error_left_and_right_integration = 1/2;
-
 i_y_3 = zeros (151);
 for i = 1:150
     if i == 1
@@ -270,10 +258,7 @@ for i = 1:150
         i_y_3(i) = y_function(((2*i-1)+(2*i+1))/2) * 2 + i_y_3(i-1); 
     end
 end
-plot(x, i_y_3, 'magenta');
-
 Margin_of_error_center_integration = 2/24;
-
 i_y_4 = zeros (301);
 for i = 1:300
     if i == 1
@@ -282,10 +267,7 @@ for i = 1:300
         i_y_4(i) = ((y_function(i)+y_function(i+1))/2) + i_y_4(i-1); 
     end
 end
-plot(x_function, i_y_4, 'yellow');
-
 Margin_of_error_trapeziod_integration = 1/4320;
-
 i_y_5 = zeros (151);
 for i = 1:150
     if i == 1
@@ -294,10 +276,9 @@ for i = 1:150
         i_y_5(i) = 1/3 * (y_function(2*i-1)+4*y_function(((2*i-1)+(2*i+1))/2)+y_function(2*i+1)) + i_y_5(i-1); 
     end
 end
-plot(x, i_y_5, 'black');
-
+fig6 = figure;
+plot(x_function, i_y_1, 'green', x_function, i_y_2, 'blue', x, i_y_3, 'magenta', x_function, i_y_4, 'yellow', x, i_y_5, 'black');
 Margin_of_error_simpson_integration = 2/2880;
-
 disp('Margin of error of integration:');
 disp('Left and right : '); 
 disp(Margin_of_error_left_and_right_integration);
@@ -307,7 +288,6 @@ disp('Trapeziod: ');
 disp(Margin_of_error_trapeziod_integration);
 disp('Simpson: ');
 disp(Margin_of_error_simpson_integration);
-
 title('Integration');
 xlabel('x[mm]')
 ylabel('y[mm]')
@@ -315,7 +295,9 @@ subplot(1, 2, 2);
 plot (x, y, 'red');
 xlabel('x[mm]')
 ylabel('y[mm]')
-figure;
+set(gca,'FontSize', 14,'FontName', 'Times New Roman')
+print('D:\Поликек\курсач\Integration.jpg', '-r600', '-dtiff')
+close(fig6);
 %------------Modeling----------------
 x_function_600dots = 0:0.5:300;
 len = length(x_function_600dots);
@@ -347,11 +329,7 @@ for i = 1:len
         end
     end
 end
-
-plot (x_function_600dots, V);
 figure;
-plot (x_function_600dots, delta_t);
-figure
 hold on;
 xlim([0 300]);
 ylim([0 200]);
