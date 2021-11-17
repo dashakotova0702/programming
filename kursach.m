@@ -334,17 +334,28 @@ for i = 1:len
         end
     end
 end
-figure;
-plot(x_function_600dots, V);
+fig7 = figure;
+hold on;
+count = 0;
+for i = 1:len
+    if (y_func_2(i) <= y_func_2(j))
+        plot(x_function_600dots(i), V(i), '.b', 'MarkerSize', 1);
+        count = count + 1;
+    end
+end
 title('Зависимость скорости от x');
 xlabel('x[м]')
 ylabel('V[м/с]')
+xlim([0 300]);
+set(gca,'FontSize', 14,'FontName', 'Times New Roman')
+print('D:\Даша\Политех\Численные методы\Dependency.jpg', '-r600', '-dtiff');
+close(fig7);
 figure;
 hold on;
 plot (x_function_600dots, y_func_2);
 title('Моделирование');
-xlabel('x[мм]')
-ylabel('y[мм]')
+xlabel('x[м]')
+ylabel('y[м]')
 xlim([0 300]);
 ylim([0 200]);
 if (tangens_a(j) > 0)
@@ -353,18 +364,14 @@ end
 if (tangens_a(j) < 0)
     step = 0.5;
 end
-count = 0;
-while true
+for n = 1:count*3
     p = (k/0.5)+1;
-    if (((p == j) || (y_func_2(p)>y_func_2(j)) || k == 300 || k == 0) && count ~= 0)
+    if (((p == j) || (y_func_2(p)>y_func_2(j)) || k == 300 || k == 0) && n ~= 1)
         step = -step;
     end
     h = plot(k, y_func_2(p), '.r', 'MarkerSize', 15);
-    pause(delta_t(p)/2);
+    pause(delta_t(p));
     k = k + step;
-    count = count + 1;
     delete(h);
-    if (count == 600)
-        close;
-    end
 end
+close;
