@@ -21,7 +21,7 @@ title('Полином Лагранжа');
 xlabel('x[мм]')
 ylabel('y[мм]')
 set(gca,'FontSize', 14,'FontName', 'Times New Roman')
-print('D:\Даша\Политех\Численные методы\Lagrange.jpg', '-r600', '-dtiff')
+% print('D:\Даша\Политех\Численные методы\Lagrange.jpg', '-r600', '-dtiff')
 close(fig1);
 %--------------Newton-------------
 y_newton = 1;
@@ -52,7 +52,7 @@ title('Полином Ньютона');
 xlabel('x[мм]')
 ylabel('y[мм]')
 set(gca,'FontSize', 14,'FontName', 'Times New Roman')
-print('D:\Даша\Политех\Численные методы\Newton.jpg', '-r600', '-dtiff')
+% print('D:\Даша\Политех\Численные методы\Newton.jpg', '-r600', '-dtiff')
 close(fig2);
 %------------Spline------------
 y_10dots = [187, 169, 26, 34, 40, 53, 105, 113, 150, 176];
@@ -129,7 +129,7 @@ title('Сплайн-интерполяция');
 xlabel('x[мм]')
 ylabel('y[мм]')
 set(gca,'FontSize', 14,'FontName', 'Times New Roman')
-print('D:\Даша\Политех\Численные методы\Spline.jpg', '-r600', '-dtiff')
+% print('D:\Даша\Политех\Численные методы\Spline.jpg', '-r600', '-dtiff')
 close(fig3);
 %------------Approximation----------------
 N = length(x_10dots);
@@ -177,7 +177,7 @@ title('Аппроксимация');
 xlabel('x[мм]')
 ylabel('y[мм]')
 set(gca,'FontSize', 14,'FontName', 'Times New Roman')
-print('D:\Даша\Политех\Численные методы\Approximation.jpg', '-r600', '-dtiff')
+% print('D:\Даша\Политех\Численные методы\Approximation.jpg', '-r600', '-dtiff')
 close(fig4);
 %-----------Differentiation---------------
 x_function = 0:1:300;
@@ -257,7 +257,7 @@ for i = 1:150
         i_y_3(i) = y_function(((2*i-1)+(2*i+1))/2) * 2 + i_y_3(i-1); 
     end
 end
-Margin_of_error_center_integration = 2/24;
+Margin_of_error_center_integration = 8/24;
 i_y_4 = zeros (301);
 for i = 1:300
     if i == 1
@@ -266,7 +266,7 @@ for i = 1:300
         i_y_4(i) = ((y_function(i)+y_function(i+1))/2) + i_y_4(i-1); 
     end
 end
-Margin_of_error_trapeziod_integration = 1/4320;
+Margin_of_error_trapeziod_integration = 1/12;
 i_y_5 = zeros (151);
 for i = 1:150
     if i == 1
@@ -275,11 +275,11 @@ for i = 1:150
         i_y_5(i) = 1/3 * (y_function(2*i-1)+4*y_function(((2*i-1)+(2*i+1))/2)+y_function(2*i+1)) + i_y_5(i-1); 
     end
 end
+Margin_of_error_simpson_integration = 32/2880;
 fig6 = figure;
 subplot(1,2,1);
 hold on;
 plot(x_function, i_y_1, 'green', x_function, i_y_2, 'blue', x, i_y_3, 'magenta', x_function, i_y_4, 'yellow', x, i_y_5, 'black');
-Margin_of_error_simpson_integration = 2/2880;
 disp('Margin of error of integration:');
 disp('Left and right : '); 
 disp(Margin_of_error_left_and_right_integration);
@@ -364,7 +364,7 @@ while true
     k = k + step;
     count = count + 1;
     delete(h);
-    if (count == 2000)
-        stop;
+    if (count == 600)
+        close;
     end
 end
